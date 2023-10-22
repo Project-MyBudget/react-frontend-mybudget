@@ -1,0 +1,22 @@
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 2%;
+    color: black;
+    text-align: center;
+    z-index: 20;
+}
+
+.menu-items {
+    display: inline-block;
+    margin-left: 33.33%;
+    margin-right: 33.33%;
+    background-color: #ECECEC;
+    height: 100px;
+    border-radius: 10px;
+    width: 33.33%;
+}

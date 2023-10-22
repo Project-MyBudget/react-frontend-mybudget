@@ -2,9 +2,9 @@ import { useState } from 'react';
 import UserService from '../../../services/User.service';
 import logo from '../../../assets/logo.png';
 import userIcon from '../../../assets/user-icon.png';
-import './authenticate.screen.css';
+import './authenticate.style.css';
 import 'toastify-js/src/toastify.css';
-import ToastifyConfig from '../../../util/Toastify.util';
+import ToastifyConfig from '../../../util/toastify-config.util';
 import Toastify from 'toastify-js';
 
 function App() {

@@ -1,0 +1,47 @@
+header {
+    width: 100%;
+    background-color: #fff;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    vertical-align: center;
+}
+
+.header-left-box {
+    width: 33.33%;
+}
+
+.header-right-box {
+    width: 33.33%;
+    text-align: right;
+    margin-right: 10%;
+}
+
+.search-input {
+    border-radius: 5px;
+    width: 50%;
+    height: 31px;
+    padding: 2%;
+    border: 0.2px solid #CFCFCF;
+    text-decoration: none;
+    outline: none;
+}
+
+.submit-icon-search {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    z-index: 10;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.submit-line {
+    position: relative;
+    width: 100%;
+}
