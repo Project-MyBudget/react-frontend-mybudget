@@ -2,3 +2,54 @@
     margin-left: 3%;
     margin-right: 3%;
 }
+
+.graph-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    height: 35vh;
+}
+
+.suggestion-debts {
+    border: 1px solid #000;
+    background-color: white;
+    width: 35%;
+    margin: 10px;
+}
+
+.graph-debts {
+    border: 1px solid #000;
+    background-color: white;
+    width: 35%;
+    margin: 10px;
+}
+
+.debts-per-months {
+    border: 1px solid #000;
+    background-color: white;
+    width: 30%;
+    margin: 10px;
+}
+
+.goals-and-legends-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    height: 25vh;
+}
+
+.legends-box {
+    border: 1px solid #000;
+    background-color: white;
+    width: 71%;
+    margin: 10px;
+}
+
+.goals-box {
+    border: 1px solid #000;
+    background-color: white;
+    width: 30%;
+    margin: 10px;
+}

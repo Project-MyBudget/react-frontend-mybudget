@@ -1,0 +1,48 @@
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 2%;
+    color: black;
+    text-align: center;
+    z-index: 20;
+}
+
+.menu-items {
+    display: flex;
+    padding: 7px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    margin-left: 33.33%;
+    margin-right: 33.33%;
+    background-color: #ECECEC;
+    height: 100px;
+    border-radius: 10px;
+    width: 33.33%;
+}
+
+.selected-item {
+    background-color: #73aef7;
+    border-radius: 50%;
+    padding: 15px;
+}
+
+.selected-item:hover {
+    filter: drop-shadow(0 0 0.11em black);
+}
+
+.menu-icon {
+    margin: 4%;
+}
+
+.not-selected-item:hover {
+    transition: 300ms;
+    background-color: #73aef7;
+    border-radius: 50%;
+    padding: 15px;
+    filter: drop-shadow(0 0 0.1em black);
+}
