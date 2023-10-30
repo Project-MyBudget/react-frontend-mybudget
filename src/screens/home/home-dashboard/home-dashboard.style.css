@@ -12,21 +12,18 @@
 }
 
 .suggestion-debts {
-    border: 1px solid #000;
     background-color: white;
     width: 35%;
     margin: 10px;
 }
 
 .graph-debts {
-    border: 1px solid #000;
     background-color: white;
     width: 35%;
     margin: 10px;
 }
 
 .debts-per-months {
-    border: 1px solid #000;
     background-color: white;
     width: 30%;
     margin: 10px;
