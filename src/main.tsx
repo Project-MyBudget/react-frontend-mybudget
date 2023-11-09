@@ -4,6 +4,7 @@ import AuthenticateScreen from './screens/user/authenticate/authenticate.screen.
 import RegisterScreen from './screens/user/register/first-stage-register.screen.tsx';
 import RegisterScreen2 from './screens/user/register/second-stage-register.screen.tsx';
 import HomeDashboard from './screens/home/home-dashboard/home-dashboard.screen.tsx';
+import InitialFinancialControl from './screens/financial-control/initial-financial-control.screen.tsx';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
