@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.money-icon {
+    background-color: #D3FFE7;
+    height: 60px;
+    width: 60px;
+    border-radius: 40px;
+    background-image: url('money-recive.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    margin: 10px;
+}
+
+.your-budget {
+    display: flex;
+}
+
+main {
+    width: 100vw;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+section {
+    padding: 10px;
+    text-align: center;
+    background-color: #F6F6F6;
+    height: 360px;
+    width: 25%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+.btn-nw-expense {
+    background-color: #38b6ff;
+    border-radius: 5px;
+    height: 35px;
+    width: 135px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+section > h1 {
+    font-weight: 400;
+    margin: 20px 20px;
+}
+
+.inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+.inputs > div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; 
+    flex-grow: 0.5;
+    margin-bottom: 30px;
+}
+
+#expense-field {
+    flex-grow: 2;
+}
+
+.inputs input, select {
+    width: 90%;
+    height: 40px;
+    border: solid #000 1px;
+    padding: 6px;
+    border-radius: 6px;
+    color: #666;
+}
+
+.inputs input {
+    width: 73%;
+}
+
+#user-finances-screen .btn-nw-expense {
+    align-self: flex-start;
+}
+
+#user-finances-screen .your-budget, h1 {
+    margin-left: 4.7%;
+}
+
+#save {
+    display: flex;
+    justify-content: center;
+}

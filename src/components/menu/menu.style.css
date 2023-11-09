@@ -39,6 +39,10 @@
     margin: 4%;
 }
 
+.not-selected-item {
+    transition: 300ms;
+}
+
 .not-selected-item:hover {
     transition: 300ms;
     background-color: #73aef7;
