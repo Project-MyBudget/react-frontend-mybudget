@@ -1,152 +1,160 @@
 #root {
-    max-width: 1280px;
-    text-align: center;
+  max-width: 1280px;
+  text-align: center;
+}
+
+.container-card-register {
+  margin-left: 57vw;
+  margin-right: 10vw;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  z-index: 1;
+}
+
+.card-section-register {
+  margin-top: 10vh;
+  background-color: #F6F6F6;
+  color: white;
+  width: 100%;
+  height: 60vh;
+  align-items: center;
+  border-radius: 15px;
+  padding: 50px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+}
+
+.container {
+  background: url('../../../assets/new-background.png') no-repeat;
+  height: 101vh;
+  width: 99vw;
+  margin: -1%;
+  background-size: cover;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 5%;
+  text-align: left;
+}
+
+.register-form>input {
+  width: 80%;
+  color: black;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  border-bottom: 2px solid #1370DE;
+}
+
+.date-of-register {
+  text-align: none;
+  color: #666;
+  font-family: 'Berlin Sans FB Demi', sans-serif;
+
+}
+
+.register-form>input:focus {
+  outline: none;
+  filter: drop-shadow(0 0 0.02em black);
+}
+
+.btn-next:hover {
+  filter: drop-shadow(0 0 0.3em black);
+  cursor: pointer;
+}
+
+.btn-next {
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+  color: #0565D9;
+  padding: 15px;
+  width: 150px;
+  font-size: 16px;
+  border: 1px solid #0565D9;
+  border-radius: 9px;
+}
+
+.btn-next:hover {
+  filter: drop-shadow(0 0 0.3em #646cffaa);
+  cursor: pointer;
+}
+
+.logo {
+  height: 6em;
+  padding: 0.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+  cursor: pointer;
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .container-card {
-    margin-left: 57vw;
-    margin-right: 10vw;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    z-index: 1;
+
+  to {
+    transform: rotate(360deg);
   }
-  
-  .card-section {
-    margin-top: 20vh;
-    background-color: #F6F6F6;
-    color: white;
-    width: 100%;
-    height: 40vh;
-    align-items: center;
-    border-radius: 15px;
-    padding: 50px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
   }
-  
-  .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: black;
-    text-align: center; 
-  }
-  
-  .container {
-    background: url('../../../assets/new-background.png') no-repeat;
-    height: 101vh;
-    width: 99vw;
-    margin: -1%;
-    background-size: cover;
-  }
-  
-  .register-form {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    padding: 5%;
-    text-align: left;
-  }
-  
-  .register-form > input {
-    width: 80%;
-    color: black;
-    font-size: 16px;
-    border: none;
-    background-color: transparent;
-    text-decoration: none;
-    border-bottom: 2px solid #1370DE;
-  }
-  
-  .register-form > a {
-    text-decoration: none;
-    align-self: left;
-    color: black;
-  }
-  
-  
-  .register-form > input:focus {
-    outline: none;
-    filter: drop-shadow(0 0 0.02em black);
-  }
-  
-  .button-area {
-    width: 80%;
-    margin-top: 10%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-  
-  .button-area > .btn-register {
-    background-color: #0565D9;
-    color: white;
-    padding: 10px;
-    width: 120px;
-    font-size: 16px;
-    border: none;
-    border-radius: 9px;
-  }
-  
-  .button-area > .btn-next:hover{
-    filter: drop-shadow(0 0 0.3em black);
-    cursor: pointer;
-  }
-  
-  .button-area > .btn-next {
-    text-align: center;
-    text-decoration: none;
-    background-color: white;
-    color: #0565D9;
-    padding: 10px;
-    width: 120px;
-    font-size: 16px;
-    border: 1px solid #0565D9;
-    border-radius: 9px;
-  }
-  
-  .button-area > .btn-next:hover {
-    filter: drop-shadow(0 0 0.3em #646cffaa);
-    cursor: pointer;
-  }
-  
-  .logo {
-    height: 6em;
-    padding: 0.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-    cursor: pointer;
-  }
-  
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
-  
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-  
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-      animation: logo-spin infinite 20s linear;
-    }
-  }
-  
-  .card {
-    padding: 2em;
-  }
-  
-  .read-the-docs {
-    color: #888;
-  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.group-check-box-first-stage {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  justify-content: space-between;
+}
+
+.group-check-box-first-stage > label > select {
+  text-decoration: none;
+  border: 1px solid #666;
+  color: #666;
+  border-radius: 4px;
+  width: 100px;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.group-check-box-first-stage > label {
+  display: flex;
+  flex-direction: column;
+  color: #666;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
