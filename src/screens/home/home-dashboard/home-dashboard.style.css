@@ -1,6 +1,7 @@
 .home-container {
     margin-left: 3%;
     margin-right: 3%;
+    height: 90vh;
 }
 
 .graph-box {
@@ -15,12 +16,15 @@
     background-color: white;
     width: 35%;
     margin: 10px;
+    height: auto;
+
 }
 
 .graph-debts {
     background-color: white;
     width: 35%;
     margin: 10px;
+    height: auto;
 }
 
 .debts-per-months {
@@ -34,19 +38,38 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+    margin-top: 1%;
     height: 25vh;
 }
 
 .legends-box {
-    border: 1px solid #000;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    font-size: 16px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     width: 71%;
+    flex-wrap: 100px;
     margin: 10px;
 }
 
+.legend-topic-ball {
+    padding: 0.7px;
+    margin-right: 5px;
+    border-radius: 70px;
+}
+
+.legend-topic {
+    margin: 2px;
+}
+
 .goals-box {
-    border: 1px solid #000;
-    background-color: white;
     width: 30%;
     margin: 10px;
+}
+
+.charts-title {
+    font-size: 18px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color: black;
 }
