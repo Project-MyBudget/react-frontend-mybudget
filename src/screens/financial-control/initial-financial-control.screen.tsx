@@ -5,6 +5,7 @@ import './initial-financial-control.style.css';
 import financialIcon from '../../assets/financial-icon.png';
 import economyIcon from '../../assets/economy-icon.png';
 import goalsIcon from '../../assets/goals-icon.png';
+import BudgetComponent from '../../components/budget/budget.component';
 
 function App() {
     return (
@@ -15,13 +16,7 @@ function App() {
                     <div className='title-financial-control'>
                         <span>Controle financeiro</span>
                     </div>
-                    <div className='sub-title-control-financial'>
-                        <div className='sub-title-icon-budget'></div>
-                        <div className='sub-title-items'>
-                            <span className='sub-title-budget'>Seu orçamento</span>
-                            <span className='budget-control-financial'>R$ 10000,00</span>
-                        </div>
-                    </div>
+                    <BudgetComponent />
                 </section>
                 <div className='option-title-control'>
                     <span>Selecione uma opção</span>

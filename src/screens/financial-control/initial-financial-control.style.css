@@ -13,48 +13,6 @@
     line-height: normal;
 }
 
-.sub-title-control-financial {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: 5px;
-}
-
-.sub-title-icon-budget {
-    background: url('../../assets/budget-icon.png') no-repeat;
-    width: 60px;
-    height: 60px;
-    background-size: contain;
-}
-
-.sub-title-items {
-    display: flex;
-    margin-top: 5px;
-    margin-left: 1%;
-    flex-direction: column;
-    vertical-align: middle;
-}
-
-.sub-title-budget {
-    color: #ACACAC;
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.2px;
-}
-
-.budget-control-financial {
-    color: #333;
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 100%;
-    /* 15px */
-    letter-spacing: -0.15px;
-}
-
 .option-title-control {
     text-align: center;
     font-size: 40px;
