@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import UserService from '../../../services/User.service';
+import UserService from '../../../services/user.service';
 import logo from '../../../assets/logo.png';
 import userIcon from '../../../assets/user-icon.png';
 import './authenticate.style.css';
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <>
-      <div className="container">
+      <div className="container-authenticate">
         <section className="logo">
           <img
             src={logo}
@@ -56,7 +56,7 @@ function App() {
                 <input type="password" name="password" placeholder='Senha' onChange={handleInputChange} value={formValues.password || ''} required maxLength={16}/>
                 <div className='button-area'>
                   <button type='submit' className='btn-login'>Acessar</button>
-                  <a href="/" className='btn-register'>Registrar-se</a>
+                  <a href="/register/step/initial" className='btn-register'>Registrar-se</a>
                 </div>
               </form>
             </section>

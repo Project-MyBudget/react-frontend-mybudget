@@ -1,3 +1,4 @@
+import Employment from "./Employment.model";
 interface RegisterRequest{
     firstName: string,
     lastName: string,
@@ -5,10 +6,12 @@ interface RegisterRequest{
     phoneNumber: string,
     email: string,
     password: string,
+    hasChild: number,
     childrenNumber: number,
     status: string,
     gender: string,
-    civilStatus: string
+    civilStatus: string,
+    employment: Employment
 }
 
 export default RegisterRequest;
