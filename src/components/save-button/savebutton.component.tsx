@@ -1,12 +1,12 @@
-import "./savebutton.component.css"
+import "./savebutton.component.css";
 
 const SaveButton = (props: any) => {
     return (
         <div className="save-btn">
-            salvar
+            SALVAR
         </div>
-    )
-}
+    );
+};
 
 
 export default SaveButton;
