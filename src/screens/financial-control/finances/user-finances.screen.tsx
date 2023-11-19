@@ -6,14 +6,16 @@ import BudgetComponent from '../../../components/budget/budget.component';
 import ExpensesService from '../../../services/expenses.service';
 import "./user-finances.style.css";
 import ExpensesResponse from "../../../models/ExpensesResponse.model";
+import ExpenseUserRequest from "../../../models/ExpenseUserRequest.model";
 import ExpenseType from "../../../models/ExpenseType.model";
-
 
 const App = () => {
 
     const [expenseType, setExpenseType] = useState<string>('E');
     const [expenses, setExpenses] = useState<ExpensesResponse>({ expenses: [] });
-    const [formValues, setFormValues] = useState({});
+    const [request, setRequest] = useState<ExpenseType[]>([]);
+    const [formValues, setFormValues] = useState({0: []});
+
 
     useEffect(() => {
         const expenseService = new ExpensesService();
@@ -22,6 +24,31 @@ const App = () => {
             setExpenses(res);
         });
     }, []);
+
+    const handleSubmit = async () => {
+        const expenseService = new ExpensesService();
+        
+        for (let i = 0; i < expenses.expenses.length; i++) {
+            if (expenseType === expenses.expenses[i].type) {
+                const newRequest: ExpenseType = {
+                    id: expenses.expenses[i].id,
+                    type: expenses.expenses[i].type,
+                    description: expenses.expenses[i].description
+                };
+                setRequest([...request, newRequest]);
+                console.log(expenses.expenses[i].id, request);
+            }
+        }
+
+        const realRequest: ExpenseUserRequest = {
+            idUser: 1,
+            expenses: request
+        };
+        console.log(realRequest);
+
+        const response = await expenseService.createExpenses(realRequest);
+        console.log(response);
+    };
 
     const getTitle = () => {
         switch (expenseType) {
@@ -41,7 +68,7 @@ const App = () => {
                 ...prevData[groupId],
                 [name]: value,
                 "id": expenseId,
-                "dateReference": new Date().getMonth()
+                "dateReference": new Date()
             }
         }));
         console.log(formValues);
@@ -64,7 +91,7 @@ const App = () => {
                                                 name="value"
                                                 min="0"
                                                 placeholder="Valor"
-                                                onChange={(e) => handleInputChange(index, "value", e.target.value, data.id)}
+                                                onChange={e => handleInputChange(index, "value", e.target.value, data.id) }
                                                 value={formValues[index]?.value || 0}
                                             />
                                         </div> : <> </>
@@ -115,7 +142,7 @@ const App = () => {
                     <CardExpenses title="Lazer" expenseType={expenseType} />
                 </main>
                 <div id="save">
-                    <SaveButton />
+                    <SaveButton onClick={() => handleSubmit()} />
                 </div>
             </div>
             <Menu />
