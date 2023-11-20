@@ -1,20 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "../../../components/header/header.component";
 import SaveButton from "../../../components/save-button/savebutton.component";
 import Menu from "../../../components/menu/menu.component";
 import BudgetComponent from '../../../components/budget/budget.component';
 import ExpensesService from '../../../services/expenses.service';
+import HoursUtils from '../../../util/hours.util';
 import "./user-finances.style.css";
 import ExpensesResponse from "../../../models/ExpensesResponse.model";
 import ExpenseUserRequest from "../../../models/ExpenseUserRequest.model";
 import ExpenseType from "../../../models/ExpenseType.model";
+import 'toastify-js/src/toastify.css';
+import ToastifyConfig from '../../../util/toastify-config.util';
+import Toastify from 'toastify-js';
+import { useNavigate } from 'react-router-dom';
+
 
 const App = () => {
-
+    const navigate = useNavigate();
     const [expenseType, setExpenseType] = useState<string>('E');
     const [expenses, setExpenses] = useState<ExpensesResponse>({ expenses: [] });
-    const [request, setRequest] = useState<ExpenseType[]>([]);
+    const [request, setRequest] = useState([{}]);
     const [formValues, setFormValues] = useState({0: []});
+    const [focusedInput, setFocusedInput] = useState<number | null>(null);
 
 
     useEffect(() => {
@@ -27,27 +34,39 @@ const App = () => {
 
     const handleSubmit = async () => {
         const expenseService = new ExpensesService();
-        
-        for (let i = 0; i < expenses.expenses.length; i++) {
-            if (expenseType === expenses.expenses[i].type) {
+        const updatedRequest: Array<ExpenseType> = [];
+    
+        expenses.expenses.forEach((item, index) => {
+            if (expenseType === item.type) {
+                
                 const newRequest: ExpenseType = {
-                    id: expenses.expenses[i].id,
-                    type: expenses.expenses[i].type,
-                    description: expenses.expenses[i].description
+                    id: item.id,
+                    type: item.type,
+                    description: item.description,
+                    dateReference: formValues[index].dateReference,
+                    value: formValues[index].value
                 };
-                setRequest([...request, newRequest]);
-                console.log(expenses.expenses[i].id, request);
+                
+                updatedRequest.push(newRequest);
             }
-        }
-
+        });
+    
+        setRequest(updatedRequest);
+    
         const realRequest: ExpenseUserRequest = {
             idUser: 1,
-            expenses: request
+            expenses: updatedRequest
         };
-        console.log(realRequest);
-
+    
         const response = await expenseService.createExpenses(realRequest);
-        console.log(response);
+
+        if (response.status !== 200) {
+            response.json().then(res => Toastify(ToastifyConfig.getPopUp(res.message, "error")).showToast());
+            return;
+        } 
+
+        Toastify(ToastifyConfig.getPopUp(`Despesas atualizadas com sucesso para o mês: ${new Date().getMonth()}`, "success")).showToast();
+        navigate("/initial/financial-control");
     };
 
     const getTitle = () => {
@@ -62,45 +81,62 @@ const App = () => {
     };
 
     const handleInputChange = (groupId: number, name: string, value: any, expenseId: number) => {
-        setFormValues((prevData: any) => ({
-            ...prevData,
+        const updatedFormValues = {
+            ...formValues,
             [groupId]: {
-                ...prevData[groupId],
+                ...formValues[groupId],
                 [name]: value,
-                "id": expenseId,
-                "dateReference": new Date()
-            }
-        }));
-        console.log(formValues);
+                id: expenseId,
+                dateReference: HoursUtils.getCurrentDateTimeForMySQL(),
+            },
+        };
+    
+        setFormValues(updatedFormValues);
+        setFocusedInput(groupId); // Mantém o foco no input atualizado
     };
 
     const InputCard = (props: any) => {
+        const inputsRefs = Array.from({ length: expenses.expenses.length }, () => useRef<HTMLInputElement>(null));
+    
+        useEffect(() => {
+            if (focusedInput !== null && inputsRefs[focusedInput] && inputsRefs[focusedInput].current) {
+                inputsRefs[focusedInput].current.focus();
+            }
+        }, [focusedInput]);
+    
         return (
             <>
-                {
-                    expenses.expenses.map((data, index) => {
-                        return (
-                            <>
-                                {
-                                    data.type === props.type ?
-                                        <div className="frm-expense-types" key={index}>
-                                            <input id="expense-field" type="text" style={{ color: "black" }} name="description" placeholder="Data" value={data.description} disabled />
-                                            <input
-                                                id="expense-field"
-                                                type="number"
-                                                name="value"
-                                                min="0"
-                                                placeholder="Valor"
-                                                onChange={e => handleInputChange(index, "value", e.target.value, data.id) }
-                                                value={formValues[index]?.value || 0}
-                                            />
-                                        </div> : <> </>
-                                }
-                            </>
-
-                        );
-                    })
-                }
+                {expenses.expenses.map((data, index) => {
+                    return (
+                        <div className="frm-expense-types" key={index}>
+                            {data.type === props.type ? (
+                                <>
+                                    <input
+                                        id="expense-field"
+                                        type="text"
+                                        style={{ color: 'black' }}
+                                        name="description"
+                                        placeholder="Data"
+                                        value={data.description}
+                                        disabled
+                                    />
+                                    <input
+                                        ref={inputsRefs[index]}
+                                        id="expense-field"
+                                        type="number"
+                                        name="value"
+                                        min="0"
+                                        placeholder="Valor"
+                                        onChange={(e) => handleInputChange(index, 'value', e.target.value, data.id)}
+                                        value={formValues[index]?.value || ''}
+                                    />
+                                </>
+                            ) : (
+                                <></>
+                            )}
+                        </div>
+                    );
+                })}
             </>
         );
     };

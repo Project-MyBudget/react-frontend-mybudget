@@ -11,10 +11,10 @@ class ToastifyConfig {
         switch (type) {
             case "error":
                 config = {
-                    duration: 1000,
+                    duration: 3000,
                     gravity: "top",
                     position: "center",
-                    backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)"
+                    backgroundColor: "linear-gradient(to right, #ff5f6d, #ffd400)"
                 };
                 break;
             case "warning":
