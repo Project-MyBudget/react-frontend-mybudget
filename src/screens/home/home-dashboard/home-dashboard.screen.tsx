@@ -5,6 +5,7 @@ import Menu from '../../../components/menu/menu.component';
 import UserChartService from '../../../services/user-chart.service';
 import { Chart } from "react-google-charts";
 import './home-dashboard.style.css';
+import VLibras from '@moreiraste/react-vlibras'
 
 function App() {
 
@@ -159,7 +160,7 @@ function App() {
                     <PiesCharts />
                     <PreviousDebtsChartComponent />
                 </div>
-
+                <VLibras forceOnload={true}/>
                 <div className='goals-and-legends-box'>
                     <section className='legends-box'>
                         <div className='legend-topic'>
