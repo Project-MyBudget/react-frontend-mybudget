@@ -24,7 +24,7 @@ function App() {
                     <div className='title-financial-control'>
                         <span>Controle financeiro</span>
                     </div>
-                    <BudgetComponent />
+                    <BudgetComponent userId={1} />
                 </section>
                 <div className='option-title-control'>
                     <span>Selecione uma opção</span>

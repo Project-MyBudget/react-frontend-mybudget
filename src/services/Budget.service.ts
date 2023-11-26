@@ -6,7 +6,7 @@ class BudgetService {
     
     constructor() {}
 
-    async getBudgetAndEconomies(idUser : Number) : Promise<UserTotalValuesResponse> {
+    async getBudgetAndEconomies(idUser : number) : Promise<UserTotalValuesResponse> {
         const response = await fetch(`${this.BASE_URL}/mybudget-dashboard/total/${idUser}`, {
             method: "GET",
             headers: {

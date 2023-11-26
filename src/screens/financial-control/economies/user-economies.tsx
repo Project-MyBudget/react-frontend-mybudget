@@ -4,7 +4,7 @@ import Budget from "../../../components/budget/budget.component";
 import SaveButton from "../../../components/save-button/savebutton.component";
 import Menu from "../../../components/menu/menu.component";
 
-import "./user-economies.css"
+import "./user-economies.css";
 
 function App() {
     return (
@@ -12,7 +12,7 @@ function App() {
             <Header/>
             <div className="status-container">
                 <h1 className="main-title-economies">Suas Economias</h1>
-                <Budget economies={true}/>
+                <Budget userId={1} isEconomies={true}/>
             </div>
 
             <div className="control-economy-group">

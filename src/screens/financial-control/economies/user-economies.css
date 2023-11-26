@@ -1,5 +1,5 @@
 .status-container {
-    margin-left: 15px;
+    margin-left: 5%;
 }
 
 .main-title-economies{
@@ -36,13 +36,8 @@
 .input-label {
     font-weight: 600;
 }
-
-.main-title-economy {
-
-}
-
 .sub-title-economy {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .input-budget-container {
@@ -55,6 +50,8 @@
 }
 
 .input-budget-field {
+    padding: 10px;
+    border-radius: 10px;
     border: none;
     background-color: transparent;
     height: 100%;

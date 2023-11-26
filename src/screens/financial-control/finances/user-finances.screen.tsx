@@ -160,7 +160,7 @@ const App = () => {
             <Header />
             <div className="user-finances-container">
                 <h1 className="user-finance-title">Suas finanças</h1>
-                <BudgetComponent />
+                <BudgetComponent userId={1} />
 
                 <div className="expenses-types-options">
                     <div className="btn-nw-expense" onClick={() => setExpenseType("N")}>

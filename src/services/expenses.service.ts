@@ -3,7 +3,7 @@ import ExpensesResponse from "../models/ExpensesResponse.model";
 
 class ExpensesService {
 
-    private HOST: string = "http://localhost:8080";
+    private HOST: string = "http://localhost:8081";
 
     constructor() {}
 

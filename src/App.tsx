@@ -18,7 +18,7 @@ function App() {
                 <Route path="/register/step/confirm" element={<RegisterSecondStepScreen />} />
                 <Route path="/initial/financial-control" element={<InitialFinancialControl />} />
                 <Route path="/user/financial-control" element={<UserFinancial />} />
-                <Route path="/user/economies" element={<Economies/>} />
+                <Route path="/user/economy-control" element={<Economies/>} />
             </Routes>
         </>
     );

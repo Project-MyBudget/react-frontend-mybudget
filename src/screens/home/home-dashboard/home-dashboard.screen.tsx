@@ -70,7 +70,7 @@ function App() {
 
         useEffect(() => {
             const userChartService = new UserChartService();
-            userChartService.getUserCharts(2).then(res => {
+            userChartService.getUserCharts(1).then(res => {
                 const newSuggestionChart = [["Legendas", "Gastos"]];
                 const newUserChart = [["Legendas", "Gastos"]];
 
@@ -78,19 +78,13 @@ function App() {
                 newSuggestionChart.push([
                     "Gastos essenciais",
                     res.chartRecommendedDebts.essentialsDebts
-                ]);
-
-                newSuggestionChart.push([
+                ],[
                     "Gastos não essenciais",
                     res.chartRecommendedDebts.notEssentialsDebts
-                ]);
-
-                newSuggestionChart.push([
+                ],[
                     "Para economizar",
                     res.chartRecommendedDebts.spendingLimitEconomy
-                ]);
-
-                newSuggestionChart.push([
+                ],[
                     "Cuidados com você",
                     res.chartRecommendedDebts.spendingLimitLeisure
                 ]);
@@ -99,19 +93,13 @@ function App() {
                 newUserChart.push([
                     "Gastos essenciais",
                     res.chartUserDebts.essentialsDebts
-                ]);
-
-                newUserChart.push([
+                ],[
                     "Gastos não essenciais",
                     res.chartUserDebts.notEssentialsDebts
-                ]);
-
-                newUserChart.push([
+                ],[
                     "Para economizar",
                     res.chartUserDebts.spendingLimitEconomy
-                ]);
-
-                newUserChart.push([
+                ],[
                     "Cuidados com você",
                     res.chartUserDebts.spendingLimitLeisure
                 ]);

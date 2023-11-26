@@ -6,16 +6,18 @@ import { useEffect, useState } from "react";
 
 function Budget(props: any) {
 
-    const [response, setResponse] = useState<any>({
+    const { userId, isEconomies } = props; 
+
+    const [response, setResponse] = useState<UserTotalValuesResponse>({
         totalBudgetAmount: 0,
         totalValueSaved: 0
-    }) ;
+    });
 
     useEffect (() => {
         const budgetService = new BudgetService();   
-        const response = budgetService.getBudgetAndEconomies(4); 
+        const response = budgetService.getBudgetAndEconomies(userId); 
         response.then(resp => setResponse(resp));
-    }, [])
+    }, []);
 
     return (
         <>
@@ -27,8 +29,7 @@ function Budget(props: any) {
                 </div>
             </div>
             {
-                response.totalValueSaved != 0 
-                ?
+                isEconomies ?
                     <div className='sub-title-control-financial'>
                     <div className='sub-title-icon-economies'></div>
                         <div className='sub-title-items'>

@@ -23,3 +23,7 @@
 
     cursor: pointer;
 }
+
+.save-btn:hover {
+    background-color: #37c778;
+}
