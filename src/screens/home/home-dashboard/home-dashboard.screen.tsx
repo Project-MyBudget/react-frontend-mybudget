@@ -1,29 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HoursUtils from '../../../util/hours.util';
 import Header from '../../../components/header/header.component';
 import Menu from '../../../components/menu/menu.component';
+import UserChartService from '../../../services/user-chart.service';
 import { Chart } from "react-google-charts";
 import './home-dashboard.style.css';
+import VLibras from '@moreiraste/react-vlibras'
 
 function App() {
 
-    const [userInformation, setUserInformation] = useState({});
+    // const [userInformation, setUserInformation] = useState({});
 
-    const chartDebts = [
-        ["Legendas", "Gastos"],
-        ["Gastos essenciais", 1000.9],
-        ["Gastos não essenciais", 23450.00],
-        ["Para economizar", 660], 
-        ["Cuidados com você", 1030],
-    ];
 
-    const chartPreviousDebts = [
-        ["Mês", "Gastos", "Orçamento do Mês"],
-        ["Janeiro", 1000.9, 100000],
-        ["Fevereiro", 23450.00, 100000],
-        ["Março", 660, 100000],
-        ["Abril", 1030, 100000],
-    ];
+    // const chartDebts = [
+    //     ["Legendas", "Gastos"],
+    //     ["Gastos essenciais", 1000.9],
+    //     ["Gastos não essenciais", 23450.00],
+    //     ["Para economizar", 660],
+    //     ["Cuidados com você", 1030],
+    // ];
+
 
     const options = {
         chart: {
@@ -34,43 +30,137 @@ function App() {
         xAxis: { format: 'decimal' }
     };
 
+
+    const PreviousDebtsChartComponent = (props: any) => {
+        const [chartPreviousDebts, setChartPreviousDebts] = useState([["Mês", "Gastos"]]);
+
+        useEffect(() => {
+            const userChartService = new UserChartService();
+            userChartService.getUserHistoric(1).then(res => {
+                const newChart = [["Mês", "Gastos"]];
+                res.forEach(item => {
+                    const date = new Date();
+                    date.setMonth(Number.parseInt(item.month) - 1);
+                    newChart.push([
+                        date.toLocaleString('default', { month: 'long' }),
+                        item.totalValueExpenses.toString()
+                    ]);
+                });
+                setChartPreviousDebts(newChart);
+            });
+        }, []);
+
+        return (
+            <section className='debts-per-months'>
+                <Chart
+                    chartType="Bar"
+                    width="100%"
+                    height="100%"
+                    data={chartPreviousDebts}
+                    options={options}
+                />
+            </section>
+        );
+    };
+
+
+    const PiesCharts = () => {
+        const [userChart, setUserChart] = useState([]);
+        const [suggestionChart, setSuggestionChart] = useState([]);
+
+        useEffect(() => {
+            const userChartService = new UserChartService();
+            userChartService.getUserCharts(2).then(res => {
+                const newSuggestionChart = [["Legendas", "Gastos"]];
+                const newUserChart = [["Legendas", "Gastos"]];
+
+                // Recommended charts
+                newSuggestionChart.push([
+                    "Gastos essenciais",
+                    res.chartRecommendedDebts.essentialsDebts
+                ]);
+
+                newSuggestionChart.push([
+                    "Gastos não essenciais",
+                    res.chartRecommendedDebts.notEssentialsDebts
+                ]);
+
+                newSuggestionChart.push([
+                    "Para economizar",
+                    res.chartRecommendedDebts.spendingLimitEconomy
+                ]);
+
+                newSuggestionChart.push([
+                    "Cuidados com você",
+                    res.chartRecommendedDebts.spendingLimitLeisure
+                ]);
+
+                // User chart
+                newUserChart.push([
+                    "Gastos essenciais",
+                    res.chartUserDebts.essentialsDebts
+                ]);
+
+                newUserChart.push([
+                    "Gastos não essenciais",
+                    res.chartUserDebts.notEssentialsDebts
+                ]);
+
+                newUserChart.push([
+                    "Para economizar",
+                    res.chartUserDebts.spendingLimitEconomy
+                ]);
+
+                newUserChart.push([
+                    "Cuidados com você",
+                    res.chartUserDebts.spendingLimitLeisure
+                ]);
+
+                setUserChart(newUserChart);
+                setSuggestionChart(newSuggestionChart);
+            });
+        }, []);
+
+        return (
+            <>
+                <section className='suggestion-debts'>
+                    <span className='charts-title'>Nossa sugestão de despesas</span>
+                    <Chart
+                        width={'100%'}
+                        height={'100%'}
+                        chartType="PieChart"
+                        data={suggestionChart}
+                        options={options}
+                    />
+                </section>
+                <section className='graph-debts'>
+                    <span className='charts-title'>Suas despesas até o momento</span>
+                    {userChart.length > 1 ? (
+                        <Chart
+                            width={'100%'}
+                            height={'100%'}
+                            chartType="PieChart"
+                            data={userChart}
+                            options={options}
+                        />
+                    ) : (
+                        <h1 style={{ color: "black" }}>Para incluir suas despesas, gerencie seus gastos</h1>
+                    )}
+                </section>
+            </>
+        );
+    };
+
     return (
         <>
             <Header />
             <div className='home-container'>
                 <h2>{HoursUtils.getGreetingMessage("Danilo")}</h2>
                 <div className='graph-box'>
-                    <section className='suggestion-debts'>
-                        <span className='charts-title'>Nossa sugestão de despesas</span>
-                        <Chart
-                            width={'100%'}
-                            height={'100%'}
-                            chartType="PieChart"
-                            data={chartDebts}
-                            options={options}
-                        />
-                    </section>
-                    <section className='graph-debts'>
-                        <span className='charts-title'>Suas despesas até o momento</span>
-                        <Chart
-                            width={'100%'}
-                            height={'100%'}
-                            chartType="PieChart"
-                            data={chartDebts}
-                            options={options}
-                        />
-                    </section>
-                    <section className='debts-per-months'>
-                        <Chart
-                            chartType="Bar"
-                            width="100%"
-                            height="100%"
-                            data={chartPreviousDebts}
-                            options={options}
-                        />
-                    </section>
+                    <PiesCharts />
+                    <PreviousDebtsChartComponent />
                 </div>
-
+                <VLibras forceOnload={true}/>
                 <div className='goals-and-legends-box'>
                     <section className='legends-box'>
                         <div className='legend-topic'>
@@ -95,7 +185,7 @@ function App() {
                         <div className='legend-topic'>
                             <span className='legend-topic-ball' style={{ backgroundColor: "#4472C4", color: "#4472C4" }}>......</span>
                             Economizar R$ 20.000,00
-                        </div>           
+                        </div>
                     </section>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import UserService from '../../../services/user.service';
+import UserService from '../../../services/User.service';
 import logo from '../../../assets/logo.png';
 import userIcon from '../../../assets/user-icon.png';
 import './authenticate.style.css';

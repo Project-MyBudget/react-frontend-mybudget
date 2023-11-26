@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 class houroursUtils {
 
     public static getGreetingMessage(username?: string): string {
@@ -19,6 +20,11 @@ class houroursUtils {
         return message;
     }
 
+    public static getCurrentDateTimeForMySQL(): string {
+        const currentDate: Date = new Date();
+        const formattedDateTime: string = format(currentDate, 'yyyy-MM-dd HH:mm:ss');
+        return formattedDateTime;
+    }
 }
 
 export default houroursUtils;
