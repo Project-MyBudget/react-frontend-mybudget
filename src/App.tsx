@@ -6,6 +6,7 @@ import RegisterSecondStepScreen from './screens/user/register/second-stage-regis
 import HomeDashboardScreen from './screens/home/home-dashboard/home-dashboard.screen.tsx';
 import InitialFinancialControl from './screens/financial-control/initial-financial-control.screen.tsx';
 import UserFinancial from './screens/financial-control/finances/user-finances.screen.tsx';
+import Economies from './screens/financial-control/economies/user-economies.tsx';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/register/step/confirm" element={<RegisterSecondStepScreen />} />
                 <Route path="/initial/financial-control" element={<InitialFinancialControl />} />
                 <Route path="/user/financial-control" element={<UserFinancial />} />
+                <Route path="/user/economies" element={<Economies/>} />
             </Routes>
         </>
     );

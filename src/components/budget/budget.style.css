@@ -11,6 +11,13 @@
     background-size: contain;
 }
 
+.sub-title-icon-economies {
+    background: url('../../assets/economies-icon.svg') no-repeat;
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+}
+
 .sub-title-items {
     display: flex;
     margin-top: 5px;

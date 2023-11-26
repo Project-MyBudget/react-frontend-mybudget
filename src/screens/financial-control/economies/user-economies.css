@@ -1,0 +1,73 @@
+.status-container {
+    margin-left: 15px;
+}
+
+.main-title-economies{
+    font-weight: 400;
+}
+
+.control-economy-group {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -60px;
+}
+
+.control-economy-container {
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-color: #F6F6F6;
+    width: 40vw;
+    height: 40vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.label-input-budget-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-label {
+    font-weight: 600;
+}
+
+.main-title-economy {
+
+}
+
+.sub-title-economy {
+    font-weight: 600;
+}
+
+.input-budget-container {
+    display: flex;
+    align-items: center;
+    border: solid #000 1px;
+    border-radius: 3px;
+    margin: 10px;
+    width: 50%;
+}
+
+.input-budget-field {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+}
+
+.input-budget-field:focus {
+    outline: none;
+}
+
+.brl-money {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #808080;
+    font-size: small;
+}
