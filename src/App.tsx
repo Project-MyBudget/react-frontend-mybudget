@@ -7,6 +7,8 @@ import HomeDashboardScreen from './screens/home/home-dashboard/home-dashboard.sc
 import InitialFinancialControl from './screens/financial-control/initial-financial-control.screen.tsx';
 import UserFinancial from './screens/financial-control/finances/user-finances.screen.tsx';
 import Economies from './screens/financial-control/economies/user-economies.tsx';
+import UserGoals from './screens/financial-control/goals/user-goals.screen.tsx';
+
 
 function App() {
     return (
@@ -19,6 +21,7 @@ function App() {
                 <Route path="/initial/financial-control" element={<InitialFinancialControl />} />
                 <Route path="/user/financial-control" element={<UserFinancial />} />
                 <Route path="/user/economy-control" element={<Economies/>} />
+                <Route path="/user/goals-control" element={<UserGoals />} />
             </Routes>
         </>
     );

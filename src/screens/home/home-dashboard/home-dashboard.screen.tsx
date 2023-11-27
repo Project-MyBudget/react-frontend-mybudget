@@ -6,19 +6,11 @@ import UserChartService from '../../../services/user-chart.service';
 import { Chart } from "react-google-charts";
 import './home-dashboard.style.css';
 import VLibras from '@moreiraste/react-vlibras'
+import GoalsResponseModel from '../../../models/GoalsResponse.model';
+import GoalsModel from '../../../models/Goals.model';
+import GoalsService from '../../../services/goals.service';
 
 function App() {
-
-    // const [userInformation, setUserInformation] = useState({});
-
-
-    // const chartDebts = [
-    //     ["Legendas", "Gastos"],
-    //     ["Gastos essenciais", 1000.9],
-    //     ["Gastos não essenciais", 23450.00],
-    //     ["Para economizar", 660],
-    //     ["Cuidados com você", 1030],
-    // ];
 
 
     const options = {
@@ -78,13 +70,13 @@ function App() {
                 newSuggestionChart.push([
                     "Gastos essenciais",
                     res.chartRecommendedDebts.essentialsDebts
-                ],[
+                ], [
                     "Gastos não essenciais",
                     res.chartRecommendedDebts.notEssentialsDebts
-                ],[
+                ], [
                     "Para economizar",
                     res.chartRecommendedDebts.spendingLimitEconomy
-                ],[
+                ], [
                     "Cuidados com você",
                     res.chartRecommendedDebts.spendingLimitLeisure
                 ]);
@@ -93,13 +85,13 @@ function App() {
                 newUserChart.push([
                     "Gastos essenciais",
                     res.chartUserDebts.essentialsDebts
-                ],[
+                ], [
                     "Gastos não essenciais",
                     res.chartUserDebts.notEssentialsDebts
-                ],[
+                ], [
                     "Para economizar",
                     res.chartUserDebts.spendingLimitEconomy
-                ],[
+                ], [
                     "Cuidados com você",
                     res.chartUserDebts.spendingLimitLeisure
                 ]);
@@ -139,6 +131,39 @@ function App() {
         );
     };
 
+    const GoalsComponent = () => {
+        const [goalMap, setGoalMap] = useState<GoalsResponseModel>({ goals: [] });
+
+        useEffect(() => {
+            const goalService = new GoalsService();
+            const response = goalService.findGoalsByUser(1);
+
+            response.then((data) => {
+                setGoalMap(data);
+            });
+        }, []);
+
+        return (
+            <section className='goals-box'>
+                <span className='charts-title'>Suas metas:</span>
+                {
+                    goalMap?.goals?.map((data) => {
+                        return (
+                            <>
+                                <div className='legend-topic'>
+                                    <span className='legend-topic-ball'
+                                        style={data.progress === 'FEITO' ? { backgroundColor: "#009e2f", color: "#009e2f" } : { backgroundColor: "#4472C4", color: "#4472C4" }}
+                                    >......</span>
+                                    {data.description} - {data.progress}
+                                </div>
+                            </>
+                        );
+                    })
+                }
+            </section>
+        );
+    }
+
     return (
         <>
             <Header />
@@ -148,7 +173,7 @@ function App() {
                     <PiesCharts />
                     <PreviousDebtsChartComponent />
                 </div>
-                <VLibras forceOnload={true}/>
+                <VLibras forceOnload={true} />
                 <div className='goals-and-legends-box'>
                     <section className='legends-box'>
                         <div className='legend-topic'>
@@ -168,13 +193,7 @@ function App() {
                             Cuidado com você: Pensando no seu bem-estar momentâneo. Exemplos: ida ao restaurante, shopping, salão de beleza, jogos, saída com amigos e familiares.
                         </div>
                     </section>
-                    <section className='goals-box'>
-                        <span className='charts-title'>Suas metas:</span>
-                        <div className='legend-topic'>
-                            <span className='legend-topic-ball' style={{ backgroundColor: "#4472C4", color: "#4472C4" }}>......</span>
-                            Economizar R$ 20.000,00
-                        </div>
-                    </section>
+                    <GoalsComponent />
                 </div>
             </div>
             <Menu selectedItem="home" />
