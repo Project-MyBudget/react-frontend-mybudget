@@ -7,6 +7,7 @@ import 'toastify-js/src/toastify.css';
 import { useNavigate, useLocation } from "react-router-dom";
 import ToastifyConfig from '../../../util/toastify-config.util';
 import Toastify from 'toastify-js';
+import VLibras from '@moreiraste/react-vlibras'
 
 function App() {
     const location = useLocation();
@@ -54,6 +55,7 @@ function App() {
 
     return (
         <>
+            <VLibras forceOnload={true} />
             <div className="container-register">
                 <section className="logo">
                     <img

@@ -7,6 +7,7 @@ import Menu from "../../../components/menu/menu.component";
 import EconomiesModel from "../../../models/Economies.model";
 import UserService from "../../../services/User.service";
 import ToastifyConfig from '../../../util/toastify-config.util';
+import VLibras from '@moreiraste/react-vlibras'
 import Toastify from 'toastify-js';
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
             const reloadPage = setTimeout(() => {
                 window.location.reload();
             }, 1000); // Recarrega a página após 5 segundos (5000 milissegundos)
-    
+
             return () => clearTimeout(reloadPage);
         }
 
@@ -52,6 +53,7 @@ function App() {
 
     return (
         <>
+            <VLibras forceOnload={true} />
             <Header />
             <div className="status-container">
                 <h1 className="main-title-economies">Suas Economias</h1>

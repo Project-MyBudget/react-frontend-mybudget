@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import GoalsResponseModel from '../../../models/GoalsResponse.model';
 import GoalsService from '../../../services/goals.service';
 import ToastifyConfig from '../../../util/toastify-config.util';
+import VLibras from '@moreiraste/react-vlibras'
 import Toastify from 'toastify-js';
 
 
@@ -41,6 +42,7 @@ function App() {
 
         return (
             <>
+                <VLibras forceOnload={true} />
                 {
                     goalMap?.goals?.map((data, index) => {
                         return (

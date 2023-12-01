@@ -6,6 +6,7 @@ import './authenticate.style.css';
 import 'toastify-js/src/toastify.css';
 import ToastifyConfig from '../../../util/toastify-config.util';
 import Toastify from 'toastify-js';
+import VLibras from '@moreiraste/react-vlibras'
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
     if (response.status === 200) {
       Toastify(ToastifyConfig.getPopUp("Usuário autenticado com sucesso!", "success")).showToast();
       return;
-    } 
+    }
 
     response.json().then(res => {
       Toastify(ToastifyConfig.getPopUp(res.message, "denied")).showToast();
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <>
+      <VLibras forceOnload={true} />
       <div className="container-authenticate">
         <section className="logo">
           <img
@@ -52,8 +54,8 @@ function App() {
                 src={userIcon}
               />
               <form className='login-form' onSubmit={handleSubmit}>
-                <input type="text" name="email" placeholder='E-mail' onChange={handleInputChange} value={formValues.email || ''} required maxLength={250}/>
-                <input type="password" name="password" placeholder='Senha' onChange={handleInputChange} value={formValues.password || ''} required maxLength={16}/>
+                <input type="text" name="email" placeholder='E-mail' onChange={handleInputChange} value={formValues.email || ''} required maxLength={250} />
+                <input type="password" name="password" placeholder='Senha' onChange={handleInputChange} value={formValues.password || ''} required maxLength={16} />
                 <div className='button-area'>
                   <button type='submit' className='btn-login'>Acessar</button>
                   <a href="/register/step/initial" className='btn-register'>Registrar-se</a>

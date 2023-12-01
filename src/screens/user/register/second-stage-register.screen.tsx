@@ -9,6 +9,7 @@ import UserService from '../../../services/user.service';
 import ToastifyConfig from '../../../util/toastify-config.util';
 import Toastify from 'toastify-js';
 import Employment from '../../../models/Employment.model';
+import VLibras from '@moreiraste/react-vlibras'
 
 function App() {
     const location = useLocation();
@@ -25,7 +26,7 @@ function App() {
 
     const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        
+
         const service = new UserService();
         const response = await service.createUser(formValues);
 
@@ -59,6 +60,7 @@ function App() {
 
     return (
         <>
+            <VLibras forceOnload={true} />
             <div className="container-register">
                 <section className="logo">
                     <img

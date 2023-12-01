@@ -12,6 +12,7 @@ import ExpenseType from "../../../models/ExpenseType.model";
 import 'toastify-js/src/toastify.css';
 import ToastifyConfig from '../../../util/toastify-config.util';
 import Toastify from 'toastify-js';
+import VLibras from '@moreiraste/react-vlibras'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -20,7 +21,7 @@ const App = () => {
     const [expenseType, setExpenseType] = useState<string>('E');
     const [expenses, setExpenses] = useState<ExpensesResponse>({ expenses: [] });
     const [request, setRequest] = useState([{}]);
-    const [formValues, setFormValues] = useState({0: []});
+    const [formValues, setFormValues] = useState({ 0: [] });
     const [focusedInput, setFocusedInput] = useState<number | null>(null);
 
 
@@ -35,10 +36,10 @@ const App = () => {
     const handleSubmit = async () => {
         const expenseService = new ExpensesService();
         const updatedRequest: Array<ExpenseType> = [];
-    
+
         expenses.expenses.forEach((item, index) => {
             if (expenseType === item.type) {
-                
+
                 const newRequest: ExpenseType = {
                     id: item.id,
                     type: item.type,
@@ -46,24 +47,24 @@ const App = () => {
                     dateReference: formValues[index].dateReference,
                     value: formValues[index].value
                 };
-                
+
                 updatedRequest.push(newRequest);
             }
         });
-    
+
         setRequest(updatedRequest);
-    
+
         const realRequest: ExpenseUserRequest = {
             idUser: 1,
             expenses: updatedRequest
         };
-    
+
         const response = await expenseService.createExpenses(realRequest);
 
         if (response.status !== 200) {
             response.json().then(res => Toastify(ToastifyConfig.getPopUp(res.message, "error")).showToast());
             return;
-        } 
+        }
 
         Toastify(ToastifyConfig.getPopUp(`Despesas atualizadas com sucesso para o mês: ${new Date().getMonth()}`, "success")).showToast();
         navigate("/initial/financial-control");
@@ -90,22 +91,23 @@ const App = () => {
                 dateReference: HoursUtils.getCurrentDateTimeForMySQL(),
             },
         };
-    
+
         setFormValues(updatedFormValues);
         setFocusedInput(groupId); // Mantém o foco no input atualizado
     };
 
     const InputCard = (props: any) => {
         const inputsRefs = Array.from({ length: expenses.expenses.length }, () => useRef<HTMLInputElement>(null));
-    
+
         useEffect(() => {
             if (focusedInput !== null && inputsRefs[focusedInput] && inputsRefs[focusedInput].current) {
                 inputsRefs[focusedInput].current.focus();
             }
         }, [focusedInput]);
-    
+
         return (
             <>
+                <VLibras forceOnload={true} />
                 {expenses.expenses.map((data, index) => {
                     return (
                         <div className="frm-expense-types" key={index}>
