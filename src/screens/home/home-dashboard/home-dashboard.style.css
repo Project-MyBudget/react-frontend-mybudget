@@ -77,3 +77,11 @@
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     color: black;
 }
+
+.user-chart-info {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 100;
+    font-style: italic;
+    text-align: center;
+    margin-top: 20%;
+}

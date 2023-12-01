@@ -6,7 +6,8 @@ import './authenticate.style.css';
 import 'toastify-js/src/toastify.css';
 import ToastifyConfig from '../../../util/toastify-config.util';
 import Toastify from 'toastify-js';
-import VLibras from '@moreiraste/react-vlibras'
+import VLibras from '@moreiraste/react-vlibras';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
     email: '',
     password: ''
   });
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -23,8 +25,15 @@ function App() {
 
     const response = await service.authenticateUser(formData);
 
-    if (response.status === 200) {
-      Toastify(ToastifyConfig.getPopUp("Usuário autenticado com sucesso!", "success")).showToast();
+    if (response.status === 202) {
+      response.json().then(res => {
+        if (res.id > 0) {
+          localStorage.setItem("info", JSON.stringify(res));
+          Toastify(ToastifyConfig.getPopUp("Usuário autenticado com sucesso!", "success")).showToast();
+          navigate('/');
+        }
+      });
+
       return;
     }
 

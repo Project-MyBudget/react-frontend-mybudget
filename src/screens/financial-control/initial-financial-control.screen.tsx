@@ -10,7 +10,8 @@ import VLibras from '@moreiraste/react-vlibras'
 import BudgetComponent from '../../components/budget/budget.component';
 
 function App() {
-
+    const userInfo: any = localStorage.getItem('info');
+    const userId: number = JSON.parse(userInfo)?.id;
     const navigate = useNavigate();
 
     const handleNavigatePage = (url: string) => {
@@ -26,7 +27,7 @@ function App() {
                     <div className='title-financial-control'>
                         <span>Controle financeiro</span>
                     </div>
-                    <BudgetComponent userId={1} />
+                    <BudgetComponent userId={userId} />
                 </section>
                 <div className='option-title-control'>
                     <span>Selecione uma opção</span>

@@ -11,6 +11,8 @@ import VLibras from '@moreiraste/react-vlibras'
 import Toastify from 'toastify-js';
 
 function App() {
+    const userInfo: any = localStorage.getItem('info');
+    const userId: number = JSON.parse(userInfo)?.id;
 
     const [formValues, setFormValues] = useState<EconomiesModel>({
         idUser: 0,
@@ -22,7 +24,7 @@ function App() {
     });
 
     useEffect(() => {
-        getBudget(1);
+        getBudget(userId);
     }, []);
 
     const getBudget = async (userId: number) => {
@@ -37,9 +39,10 @@ function App() {
     };
 
     const handleSubmit = async () => {
+        const userId: number = JSON.parse(userInfo).id;
         const userService = new UserService();
         const request = formValues;
-        request.idUser = 1;
+        request.idUser = userId;
 
         const response = await userService.updateBudgetAndEconomies(request);
         const jsonResponse = await response.json();
@@ -64,7 +67,7 @@ function App() {
             <Header />
             <div className="status-container">
                 <h1 className="main-title-economies">Suas Economias</h1>
-                <Budget userId={1} isEconomies={true} />
+                <Budget userId={userId} isEconomies={true} />
             </div>
 
             <div className="control-economy-group">

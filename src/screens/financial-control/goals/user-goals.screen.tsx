@@ -12,14 +12,15 @@ import Toastify from 'toastify-js';
 
 
 function App() {
-
+    const userInfo: any = localStorage.getItem('info');
+    const userId: number = JSON.parse(userInfo)?.id
     const GoalsInput = () => {
         const goalService = new GoalsService();
         const [goalMap, setGoalMap] = useState<GoalsResponseModel>({ goals: [] });
 
 
         useEffect(() => {
-            const response = goalService.findGoalsByUser(1);
+            const response = goalService.findGoalsByUser(userId);
 
             response.then((data) => {
                 setGoalMap(data);
@@ -75,7 +76,7 @@ function App() {
                 }
             </>
         );
-    }
+    };
 
     return (
         <>

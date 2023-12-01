@@ -7,11 +7,11 @@ import { Chart } from "react-google-charts";
 import './home-dashboard.style.css';
 import VLibras from '@moreiraste/react-vlibras'
 import GoalsResponseModel from '../../../models/GoalsResponse.model';
-import GoalsModel from '../../../models/Goals.model';
 import GoalsService from '../../../services/goals.service';
 
 function App() {
 
+    const userInfo: any = localStorage.getItem('info');
 
     const options = {
         chart: {
@@ -27,8 +27,9 @@ function App() {
         const [chartPreviousDebts, setChartPreviousDebts] = useState([["Mês", "Gastos"]]);
 
         useEffect(() => {
+            const userId: number = JSON.parse(userInfo).id;
             const userChartService = new UserChartService();
-            userChartService.getUserHistoric(1).then(res => {
+            userChartService.getUserHistoric(userId).then(res => {
                 const newChart = [["Mês", "Gastos"]];
                 res.forEach(item => {
                     const date = new Date();
@@ -44,13 +45,22 @@ function App() {
 
         return (
             <section className='debts-per-months'>
-                <Chart
-                    chartType="Bar"
-                    width="100%"
-                    height="100%"
-                    data={chartPreviousDebts}
-                    options={options}
-                />
+                {
+                    chartPreviousDebts.length > 1 ?
+                        <Chart
+                            chartType="Bar"
+                            width="100%"
+                            height="100%"
+                            data={chartPreviousDebts}
+                            options={options}
+                        />
+                        : <>
+                            <h1 className='user-chart-info'>
+                                Você não tem histórico de gastos nesse site, cadastre <a href="/user/financial-control">Clicando aqui.</a>
+                            </h1>
+                        </>
+                }
+
             </section>
         );
     };
@@ -59,10 +69,12 @@ function App() {
     const PiesCharts = () => {
         const [userChart, setUserChart] = useState([]);
         const [suggestionChart, setSuggestionChart] = useState([]);
+        const [hasDebts, setHasDebts] = useState<boolean>(false);
 
         useEffect(() => {
+            const userId: number = JSON.parse(userInfo).id;
             const userChartService = new UserChartService();
-            userChartService.getUserCharts(1).then(res => {
+            userChartService.getUserCharts(userId).then(res => {
                 const newSuggestionChart = [["Legendas", "Gastos"]];
                 const newUserChart = [["Legendas", "Gastos"]];
 
@@ -96,6 +108,13 @@ function App() {
                     res.chartUserDebts.spendingLimitLeisure
                 ]);
 
+                setHasDebts(
+                    res.chartUserDebts.essentialsDebts > 0 ||
+                    res.chartUserDebts.notEssentialsDebts > 0 ||
+                    res.chartUserDebts.spendingLimitEconomy > 0 ||
+                    res.chartUserDebts.spendingLimitLeisure > 0
+                );
+
                 setUserChart(newUserChart);
                 setSuggestionChart(newSuggestionChart);
             });
@@ -115,7 +134,7 @@ function App() {
                 </section>
                 <section className='graph-debts'>
                     <span className='charts-title'>Suas despesas até o momento</span>
-                    {userChart.length > 1 ? (
+                    {hasDebts ?
                         <Chart
                             width={'100%'}
                             height={'100%'}
@@ -123,9 +142,12 @@ function App() {
                             data={userChart}
                             options={options}
                         />
-                    ) : (
-                        <h1 style={{ color: "black" }}>Para incluir suas despesas, gerencie seus gastos</h1>
-                    )}
+                        : <>
+                            <h1 className='user-chart-info'>
+                                Você não cadastrou informações suficientes para calcularmos seus gastos, acesse nosso paineis de controle financeiro e calcule seus gastos
+                                 <a href="/initial/financial-control"> Clicando aqui.</a>
+                            </h1>
+                        </>}
                 </section>
             </>
         );
@@ -135,8 +157,9 @@ function App() {
         const [goalMap, setGoalMap] = useState<GoalsResponseModel>({ goals: [] });
 
         useEffect(() => {
+            const userId: number = JSON.parse(userInfo).id;
             const goalService = new GoalsService();
-            const response = goalService.findGoalsByUser(1);
+            const response = goalService.findGoalsByUser(userId);
 
             response.then((data) => {
                 setGoalMap(data);

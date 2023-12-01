@@ -17,6 +17,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 const App = () => {
+    const userInfo: any = localStorage.getItem('info');
+    const userId: number = JSON.parse(userInfo)?.id;
     const navigate = useNavigate();
     const [expenseType, setExpenseType] = useState<string>('E');
     const [expenses, setExpenses] = useState<ExpensesResponse>({ expenses: [] });
@@ -53,9 +55,8 @@ const App = () => {
         });
 
         setRequest(updatedRequest);
-
         const realRequest: ExpenseUserRequest = {
-            idUser: 1,
+            idUser: userId,
             expenses: updatedRequest
         };
 

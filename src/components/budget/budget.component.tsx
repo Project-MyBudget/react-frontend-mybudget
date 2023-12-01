@@ -4,7 +4,6 @@ import './budget.style.css';
 import { useEffect, useState } from "react";
 
 function Budget(props: any) {
-
     const { userId, isEconomies } = props;
 
     const [response, setResponse] = useState<UserTotalValuesResponse>({

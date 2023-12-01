@@ -1,13 +1,20 @@
+import { useEffect } from 'react';
 import './menu.style.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faCircleInfo, faChartLine, faListCheck, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 
-
 function Menu(props: any) {
-
+    const userInfo: any = localStorage.getItem('info');
     const { selectedItem } = props;
+
+    useEffect(() => {
+        if (userInfo === null) {
+            window.location.href = "/authenticate";
+        }
+        return;
+    });
 
     return (
         <div className='footer-menu'>
