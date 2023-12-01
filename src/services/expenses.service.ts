@@ -3,17 +3,17 @@ import ExpensesResponse from "../models/ExpensesResponse.model";
 
 class ExpensesService {
 
-    private HOST: string = "http://localhost:8081";
+    private HOST: string = import.meta.env.VITE_REACT_APP_USER_MANAGER || "";
 
     constructor() {}
 
     async findAllExpensesType(): Promise<ExpensesResponse> {
-        const response = await fetch(`${this.HOST}/mybudget/find-expenses`);
+        const response = await fetch(`${this.HOST}/find-expenses`);
         return await response.json();
     }
 
     async createExpenses(request: ExpenseUserRequest) {
-        const response = await fetch(`${this.HOST}/mybudget/expenses/register`, {
+        const response = await fetch(`${this.HOST}/expenses/register`, {
             method: "POST",
             body: JSON.stringify(request),
             headers: {

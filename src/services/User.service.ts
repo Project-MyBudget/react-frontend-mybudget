@@ -3,13 +3,13 @@ import RegisterRequest from "../models/RegisterRequest.model";
 
 class UserService {
 
-    private BASE_URL: string = "http://localhost:8081/mybudget";
+    private HOST: string = import.meta.env.VITE_REACT_APP_USER_MANAGER || "";
 
     constructor() { }
 
     async authenticateUser(request: FormData) {
         const data = Object.fromEntries(request);
-        const response = await fetch(`${this.BASE_URL}/user/authenticate`, {
+        const response = await fetch(`${this.HOST}/user/authenticate`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -21,7 +21,7 @@ class UserService {
     }
 
     async createUser(request: RegisterRequest) {
-        const response = await fetch(`${this.BASE_URL}/user/register`, {
+        const response = await fetch(`${this.HOST}/user/register`, {
             method: "POST",
             body: JSON.stringify(request),
             headers: {
@@ -33,12 +33,12 @@ class UserService {
     }
 
     async getBudgetByUser(userId: number): Promise<EconomiesModel> {
-        const response = await fetch(`${this.BASE_URL}/budget/economies/${userId}`);
+        const response = await fetch(`${this.HOST}/budget/economies/${userId}`);
         return await response.json();
     }
 
     async updateBudgetAndEconomies(request: EconomiesModel) {
-        const response = await fetch(`${this.BASE_URL}/budget/update`, {
+        const response = await fetch(`${this.HOST}/budget/update`, {
             method: "PUT",
             body: JSON.stringify(request),
             headers: {

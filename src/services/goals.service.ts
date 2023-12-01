@@ -2,17 +2,17 @@ import GoalsResponseModel from "../models/GoalsResponse.model";
 
 class GoalsService {
 
-    private HOST: string = 'http://localhost:8081';
+    private HOST: string = import.meta.env.VITE_REACT_APP_USER_MANAGER || "";
 
     constructor(){}
 
     async findGoalsByUser(userId: number): Promise<GoalsResponseModel> {
-        const response = await fetch(`${this.HOST}/mybudget/goals/${userId}`);
+        const response = await fetch(`${this.HOST}/goals/${userId}`);
         return await response.json();
     }
 
     async deleteGoal(goalId: number): Promise<any> {
-        const response = await fetch(`${this.HOST}/mybudget/goals/delete/${goalId}`, {
+        const response = await fetch(`${this.HOST}/goals/delete/${goalId}`, {
             method: 'DELETE'
         });
         

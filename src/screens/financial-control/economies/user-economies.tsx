@@ -12,7 +12,14 @@ import Toastify from 'toastify-js';
 
 function App() {
 
-    const [formValues, setFormValues] = useState<EconomiesModel>({});
+    const [formValues, setFormValues] = useState<EconomiesModel>({
+        idUser: 0,
+        idBudget: 0,
+        budget: 0,
+        spendingLimitEconomy: 0,
+        valueSaved: 0,
+        salary: 0
+    });
 
     useEffect(() => {
         getBudget(1);
