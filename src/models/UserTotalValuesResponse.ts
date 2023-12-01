@@ -1,6 +1,6 @@
 interface UserTotalValuesResponse {
-    totalBudgetAmount: Number,
-    totalValueSaved: Number
+    totalBudgetAmount: number,
+    totalValueSaved: number
 }
 
 export default UserTotalValuesResponse;

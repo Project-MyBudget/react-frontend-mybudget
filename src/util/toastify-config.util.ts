@@ -14,7 +14,7 @@ class ToastifyConfig {
                     duration: 3000,
                     gravity: "top",
                     position: "center",
-                    backgroundColor: "linear-gradient(to right, #ff5f6d, #ffd400)"
+                    backgroundColor: "linear-gradient(to right, #ff8077, #ff1100)"
                 };
                 break;
             case "warning":
@@ -22,7 +22,7 @@ class ToastifyConfig {
                     duration: 1000,
                     gravity: "top",
                     position: "center",
-                    backgroundColor: "linear-gradient(to right, #f6d365, #fda085)",
+                    backgroundColor: "linear-gradient(to right, #ffc71f, #FF0065)",
                 };
                 break;
             case "denied":

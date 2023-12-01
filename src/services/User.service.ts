@@ -1,8 +1,9 @@
+import EconomiesModel from "../models/Economies.model";
 import RegisterRequest from "../models/RegisterRequest.model";
 
 class UserService {
 
-    private BASE_URL: string = "http://localhost:8080/mybudget";
+    private BASE_URL: string = "http://localhost:8081/mybudget";
 
     constructor() { }
 
@@ -28,6 +29,22 @@ class UserService {
             }
         });
 
+        return response;
+    }
+
+    async getBudgetByUser(userId: number): Promise<EconomiesModel> {
+        const response = await fetch(`${this.BASE_URL}/budget/economies/${userId}`);
+        return await response.json();
+    }
+
+    async updateBudgetAndEconomies(request: EconomiesModel) {
+        const response = await fetch(`${this.BASE_URL}/budget/update`, {
+            method: "PUT",
+            body: JSON.stringify(request),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        });
         return response;
     }
 }
