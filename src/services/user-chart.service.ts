@@ -3,7 +3,7 @@ import HistoricResponseModel from "../models/HistoricResponse.model";
 
 class UserChartService {
 
-    private HOST: string = "http://localhost:8080/mybudget-dashboard";
+    private HOST: string = import.meta.env.VITE_REACT_APP_USER_DASHBOARD_BASE_URL || "";
 
     constructor() {}
 
