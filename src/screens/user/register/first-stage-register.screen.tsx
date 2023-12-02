@@ -79,7 +79,7 @@ function App() {
                                 <section className='group-check-box-first-stage'>
                                     <label>
                                         Status civil
-                                        <select name="civilStatus" placeholder='Estado civil' onChange={handleSelectChange} value={formValues.civilStatus} required>
+                                        <select name="civilStatus" placeholder='Estado civil' onChange={handleSelectChange} value={formValues.civilStatus || "SINGLE"} required>
                                             <option value={"SINGLE"}>Solteiro</option>
                                             <option value={"MARRIED"}>Casado</option>
                                             <option value={"DIVORCED"}>Divorciado</option>

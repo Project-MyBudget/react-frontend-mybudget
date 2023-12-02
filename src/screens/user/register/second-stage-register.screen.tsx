@@ -30,6 +30,13 @@ function App() {
         const service = new UserService();
         const response = await service.createUser(formValues);
 
+        console.log(formValues.civilStatus);
+        if (formValues.civilStatus === null) {
+            const newRequest = formValues;
+            newRequest.civilStatus = "SINGLE";
+            setFormValues(newRequest);
+        }
+
         if (response.status === 200) {
             Toastify(ToastifyConfig.getPopUp("Usuário criado com sucesso!", "success")).showToast();
             navigate('/authenticate');
