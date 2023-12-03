@@ -44,6 +44,17 @@ function App() {
         const request = formValues;
         request.idUser = userId;
 
+
+        if (request.spendingLimitEconomy < 0) {
+            Toastify(ToastifyConfig.getPopUp("Por favor inserir um valor positivo para prosseguir no campo 'Pretendo economizar'.", "error")).showToast();
+            return;
+        }
+
+        if (request.budget < 0) {
+            Toastify(ToastifyConfig.getPopUp("Por favor inserir um valor positivo para prosseguir no campo 'Complementar a renda'.", "error")).showToast();
+            return;
+        }
+
         const response = await userService.updateBudgetAndEconomies(request);
         const jsonResponse = await response.json();
 
@@ -71,20 +82,20 @@ function App() {
 
             <div className="control-economy-group">
                 <form className="control-economy-container" >
-                    <h2 className="sub-title-economy"> Informe suas economias e salário: </h2>
+                    <h2 className="sub-title-economy">Informe suas economias e salário: </h2>
 
                     <div className="label-input-budget-container">
-                        <label htmlFor="" className="input-label"> Orçamento atualizado: </label>
+                        <label htmlFor="" className="input-label">Complementar a renda: </label>
                         <div className="input-budget-container">
                             <span className="brl-money">R$</span>
-                            <input min="0" type="number" className="input-budget-field" name="budget" value={formValues.budget || ''} onChange={handleInputChange} />
+                            <input min="0" type="number" className="input-budget-field" name="budget" value={formValues.budget || 0} onChange={handleInputChange} />
                         </div>
                     </div>
                     <div className="label-input-budget-container">
-                        <label htmlFor="" className="input-label"> Pretendo economizar: </label>
+                        <label htmlFor="" className="input-label">Pretendo economizar: </label>
                         <div className="input-budget-container">
                             <span className="brl-money">R$</span>
-                            <input min="0" type="number" className="input-budget-field" name="spendingLimitEconomy" value={formValues.spendingLimitEconomy || ''} onChange={handleInputChange} />
+                            <input min="0" type="number" className="input-budget-field" name="spendingLimitEconomy" value={formValues.spendingLimitEconomy || 0} onChange={handleInputChange} />
                         </div>
                     </div>
                     <SaveButton onClick={() => handleSubmit()} />

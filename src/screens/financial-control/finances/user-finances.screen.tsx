@@ -38,10 +38,9 @@ const App = () => {
     const handleSubmit = async () => {
         const expenseService = new ExpensesService();
         const updatedRequest: Array<ExpenseType> = [];
-
+        console.log(formValues);
         expenses.expenses.forEach((item, index) => {
-            if (expenseType === item.type) {
-
+            if (formValues[index]?.value > 0) {
                 const newRequest: ExpenseType = {
                     id: item.id,
                     type: item.type,
@@ -53,13 +52,12 @@ const App = () => {
                 updatedRequest.push(newRequest);
             }
         });
-
         setRequest(updatedRequest);
+        console.log(updatedRequest, request);
         const realRequest: ExpenseUserRequest = {
             idUser: userId,
             expenses: updatedRequest
         };
-
         const response = await expenseService.createExpenses(realRequest);
 
         if (response.status !== 200) {
@@ -68,7 +66,7 @@ const App = () => {
         }
 
         Toastify(ToastifyConfig.getPopUp(`Despesas atualizadas com sucesso para o mês: ${new Date().getMonth()}`, "success")).showToast();
-        navigate("/initial/financial-control");
+        // navigate("/initial/financial-control");
     };
 
     const getTitle = () => {
@@ -82,21 +80,6 @@ const App = () => {
         }
     };
 
-    const handleInputChange = (groupId: number, name: string, value: any, expenseId: number) => {
-        const updatedFormValues = {
-            ...formValues,
-            [groupId]: {
-                ...formValues[groupId],
-                [name]: value,
-                id: expenseId,
-                dateReference: HoursUtils.getCurrentDateTimeForMySQL(),
-            },
-        };
-
-        setFormValues(updatedFormValues);
-        setFocusedInput(groupId); // Mantém o foco no input atualizado
-    };
-
     const InputCard = (props: any) => {
         const inputsRefs = Array.from({ length: expenses.expenses.length }, () => useRef<HTMLInputElement>(null));
 
@@ -106,9 +89,24 @@ const App = () => {
             }
         }, [focusedInput]);
 
+        const handleInputChange = (groupId: number, name: string, value: any, expenseId: number) => {
+            const updatedFormValues = {
+                ...formValues,
+                [groupId]: {
+                    ...formValues[groupId],
+                    [name]: value,
+                    id: expenseId,
+                    dateReference: HoursUtils.getCurrentDateTimeForMySQL(),
+                }
+            };
+            setFormValues(updatedFormValues);
+            setFocusedInput(groupId); // Mantém o foco no input atualizado
+            console.log(formValues);
+        };
+
         return (
             <>
-                <VLibras forceOnload={true} />
+                {/* <VLibras forceOnload={true} /> */}
                 {expenses.expenses.map((data, index) => {
                     if (data.type === props.type) {
                         return (
@@ -135,7 +133,7 @@ const App = () => {
                             </div>
                         );
                     }
-                    return null; // Não renderiza nada quando a condição não é atendida
+                    return null;
                 })}
             </>
         );
@@ -185,6 +183,6 @@ const App = () => {
         </>
 
     );
-}
+};
 
 export default App;

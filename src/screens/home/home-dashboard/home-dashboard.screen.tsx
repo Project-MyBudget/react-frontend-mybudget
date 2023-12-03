@@ -145,7 +145,7 @@ function App() {
                         : <>
                             <h1 className='user-chart-info'>
                                 Você não cadastrou informações suficientes para calcularmos seus gastos, acesse nosso paineis de controle financeiro e calcule seus gastos
-                                 <a href="/initial/financial-control"> Clicando aqui.</a>
+                                <a href="/initial/financial-control"> Clicando aqui.</a>
                             </h1>
                         </>}
                 </section>
@@ -191,7 +191,7 @@ function App() {
         <>
             <Header />
             <div className='home-container'>
-                <h2>{HoursUtils.getGreetingMessage("Danilo")}</h2>
+                <h2>{HoursUtils.getGreetingMessage(JSON.parse(userInfo)?.name) || ''}</h2>
                 <div className='graph-box'>
                     <PiesCharts />
                     <PreviousDebtsChartComponent />
