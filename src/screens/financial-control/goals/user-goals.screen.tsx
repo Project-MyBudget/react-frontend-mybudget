@@ -9,11 +9,12 @@ import GoalsService from '../../../services/goals.service';
 import ToastifyConfig from '../../../util/toastify-config.util';
 import VLibras from '@moreiraste/react-vlibras'
 import Toastify from 'toastify-js';
+import GoalsModel from '../../../models/Goals.model';
 
 
 function App() {
     const userInfo: any = localStorage.getItem('info');
-    const userId: number = JSON.parse(userInfo)?.id
+    const userId: number = JSON.parse(userInfo)?.id;
     const GoalsInput = () => {
         const goalService = new GoalsService();
         const [goalMap, setGoalMap] = useState<GoalsResponseModel>({ goals: [] });
@@ -41,6 +42,20 @@ function App() {
             });
         };
 
+        const handleStatusChange = async (request: GoalsModel, e: React.ChangeEvent<HTMLSelectElement>) => {
+            e.preventDefault();
+            const { value } = e.target;
+            request.progress = value;
+            const response = await goalService.saveGoals(request);
+            if (response.status === 200) {
+                Toastify(ToastifyConfig.getPopUp("Status alterado com sucesso", "success")).showToast();
+                const reloadPage = setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+                return () => clearTimeout(reloadPage);
+            }
+        };
+
         return (
             <>
                 <VLibras forceOnload={true} />
@@ -54,7 +69,7 @@ function App() {
                                     type="date"
                                     style={{ color: 'black' }}
                                     name="estimatedDate"
-                                    value={data.estimatedDate}
+                                    value={new Date(data.estimatedDate).toISOString().split('T')[0]}
                                 />
                                 <input
                                     id="expense-field"
@@ -64,7 +79,7 @@ function App() {
                                     placeholder="Descrição"
                                     value={data.description || ''}
                                 />
-                                <select name="progress" id="goals-select-field" value={data.progress}>
+                                <select name="progress" id="goals-select-field" value={data.progress} onChange={(e) => handleStatusChange(data, e)}>
                                     <option value="FEITO">Feito</option>
                                     <option value="ANDAMENTO">Em andamento</option>
                                 </select>

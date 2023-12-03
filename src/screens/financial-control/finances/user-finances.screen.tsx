@@ -110,35 +110,32 @@ const App = () => {
             <>
                 <VLibras forceOnload={true} />
                 {expenses.expenses.map((data, index) => {
-                    return (
-                        <div className="frm-expense-types" key={index}>
-                            {data.type === props.type ? (
-                                <>
-                                    <input
-                                        id="expense-field"
-                                        type="text"
-                                        style={{ color: 'black' }}
-                                        name="description"
-                                        placeholder="Data"
-                                        value={data.description}
-                                        disabled
-                                    />
-                                    <input
-                                        ref={inputsRefs[index]}
-                                        id="expense-field"
-                                        type="number"
-                                        name="value"
-                                        min="0"
-                                        placeholder="Valor"
-                                        onChange={(e) => handleInputChange(index, 'value', e.target.value, data.id)}
-                                        value={formValues[index]?.value || ''}
-                                    />
-                                </>
-                            ) : (
-                                <></>
-                            )}
-                        </div>
-                    );
+                    if (data.type === props.type) {
+                        return (
+                            <div className="frm-expense-types" key={index}>
+                                <input
+                                    id="expense-field"
+                                    type="text"
+                                    style={{ color: 'black' }}
+                                    name="description"
+                                    placeholder="Data"
+                                    value={data.description}
+                                    disabled
+                                />
+                                <input
+                                    ref={inputsRefs[index]}
+                                    id="expense-field"
+                                    type="number"
+                                    name="value"
+                                    min="0"
+                                    placeholder="Valor"
+                                    onChange={(e) => handleInputChange(index, 'value', e.target.value, data.id)}
+                                    value={formValues[index]?.value || ''}
+                                />
+                            </div>
+                        );
+                    }
+                    return null; // Não renderiza nada quando a condição não é atendida
                 })}
             </>
         );
@@ -163,7 +160,7 @@ const App = () => {
             <Header />
             <div className="user-finances-container">
                 <h1 className="user-finance-title">Suas finanças</h1>
-                <BudgetComponent userId={1} />
+                <BudgetComponent userId={userId} />
 
                 <div className="expenses-types-options">
                     <div className="btn-nw-expense" onClick={() => setExpenseType("N")}>

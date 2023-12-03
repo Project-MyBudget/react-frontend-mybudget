@@ -8,6 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ToastifyConfig from '../../../util/toastify-config.util';
 import Toastify from 'toastify-js';
 import VLibras from '@moreiraste/react-vlibras'
+import DateUtils from '../../../util/date.util';
 
 function App() {
     const location = useLocation();
@@ -20,6 +21,30 @@ function App() {
 
     const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
+
+        if (!formValues.civilStatus) {
+            const newRequest = formValues;
+            newRequest.civilStatus = "SINGLE";
+            setFormValues(newRequest);
+        }
+
+        if (!formValues.gender) {
+            const newRequest = formValues;
+            newRequest.gender = "Femminino";
+            setFormValues(newRequest);
+        }
+
+        console.log(formValues);
+
+        if (formValues.hasChild && formValues.childrenNumber <= 0) {
+            Toastify(ToastifyConfig.getPopUp("Caso você tenha filho por favor inclua número correto, sendo obrigatório ser maior que 0.", "error")).showToast();
+            return;
+        }
+
+        if (DateUtils.isDateGreaterThanToday(formValues.dateOfBirth)) {
+            Toastify(ToastifyConfig.getPopUp("A data de aniversário não pode ser maior que a data atual.", "error")).showToast();
+            return;
+        }
 
         if (formValues.password === repeatPassword) {
             navigate('/register/step/confirm', { state: { formValues: formValues } });
@@ -79,28 +104,28 @@ function App() {
                                 <section className='group-check-box-first-stage'>
                                     <label>
                                         Status civil
-                                        <select name="civilStatus" placeholder='Estado civil' onChange={handleSelectChange} value={formValues.civilStatus || "SINGLE"} required>
-                                            <option value={"SINGLE"}>Solteiro</option>
-                                            <option value={"MARRIED"}>Casado</option>
-                                            <option value={"DIVORCED"}>Divorciado</option>
-                                            <option value={"WIDOWER"}>Viúvo</option>
+                                        <select name="civilStatus" placeholder='Estado civil' onChange={handleSelectChange} value={formValues.civilStatus} required>
+                                            <option value={"SINGLE"} selected={formValues.civilStatus === "SINGLE"}>Solteiro</option>
+                                            <option value={"MARRIED"} selected={formValues.civilStatus === "MARRIED"}>Casado</option>
+                                            <option value={"DIVORCED"} selected={formValues.civilStatus === "DIVORCED"}>Divorciado</option>
+                                            <option value={"WIDOWER"} selected={formValues.civilStatus === "WIDOWER"}>Viúvo</option>
                                         </select>
                                     </label>
 
                                     <label>
                                         Tem filhos?
                                         <select name="hasChild" placeholder='Possui Filhos?' onChange={handleSelectChange} value={formValues.hasChild} required>
-                                            <option value={0}>Não</option>
-                                            <option value={1}>Sim</option>
+                                            <option value={0} selected={formValues.hasChild === 0}>Não</option>
+                                            <option value={1} selected={formValues.hasChild === 1}>Sim</option>
                                         </select>
                                     </label>
 
                                     <label>
                                         Gênero
                                         <select name="gender" placeholder='Gênero' onChange={handleSelectChange} value={formValues.gender} required>
-                                            <option value={"Femminino"}>Feminino</option>
-                                            <option value={"Transgênero"}>Transgênero</option>
-                                            <option value={"Masculino"}>Masculino</option>
+                                            <option value={"Femminino"} selected={formValues.gender === "Femminino"}>Feminino</option>
+                                            <option value={"Transgênero"} selected={formValues.gender === "Transgênero"}>Transgênero</option>
+                                            <option value={"Masculino"} selected={formValues.gender === "Masculino"}>Masculino</option>
                                         </select>
                                     </label>
                                 </section>

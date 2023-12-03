@@ -9,7 +9,7 @@ import UserService from '../../../services/user.service';
 import ToastifyConfig from '../../../util/toastify-config.util';
 import Toastify from 'toastify-js';
 import Employment from '../../../models/Employment.model';
-import VLibras from '@moreiraste/react-vlibras'
+import VLibras from '@moreiraste/react-vlibras';
 
 function App() {
     const location = useLocation();
@@ -29,13 +29,6 @@ function App() {
 
         const service = new UserService();
         const response = await service.createUser(formValues);
-
-        console.log(formValues.civilStatus);
-        if (formValues.civilStatus === null) {
-            const newRequest = formValues;
-            newRequest.civilStatus = "SINGLE";
-            setFormValues(newRequest);
-        }
 
         if (response.status === 200) {
             Toastify(ToastifyConfig.getPopUp("Usuário criado com sucesso!", "success")).showToast();
@@ -58,11 +51,6 @@ function App() {
         const { name, value } = e.target;
         setEmployment({ ...employment, [name]: value });
         setFormValues({ ...formValues, employment: employment });
-    };
-
-    const handleSelectChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value, name } = e.target;
-        formValues[name] = value;
     };
 
     return (

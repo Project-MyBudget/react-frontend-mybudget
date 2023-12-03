@@ -51,8 +51,7 @@ function App() {
             Toastify(ToastifyConfig.getPopUp(jsonResponse.message, "success")).showToast();
             const reloadPage = setTimeout(() => {
                 window.location.reload();
-            }, 1000); // Recarrega a página após 5 segundos (5000 milissegundos)
-
+            }, 1000);
             return () => clearTimeout(reloadPage);
         }
 

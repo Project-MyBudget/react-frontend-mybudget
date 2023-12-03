@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-class houroursUtils {
+class HoursUtils {
 
     public static getGreetingMessage(username?: string): string {
 
@@ -27,4 +27,4 @@ class houroursUtils {
     }
 }
 
-export default houroursUtils;
+export default HoursUtils;

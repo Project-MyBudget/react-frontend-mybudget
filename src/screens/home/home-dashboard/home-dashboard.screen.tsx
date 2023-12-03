@@ -219,7 +219,7 @@ function App() {
                     <GoalsComponent />
                 </div>
             </div>
-            <Menu selectedItem="home" />
+            <Menu />
         </>
 
     );
