@@ -8,6 +8,7 @@ import InitialFinancialControl from './screens/financial-control/initial-financi
 import UserFinancial from './screens/financial-control/finances/user-finances.screen.tsx';
 import Economies from './screens/financial-control/economies/user-economies.tsx';
 import UserGoals from './screens/financial-control/goals/user-goals.screen.tsx';
+import About from './screens/about/about.screen.tsx'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <>
             <Routes>
                 <Route path="/" element={<HomeDashboardScreen/>}/>
+                <Route path="/about" element={<About/>}/>
                 <Route path="/authenticate" element={<AuthenticateScreen />} />
                 <Route path="/register/step/initial" element={<RegisterFirstStepScreen />} />
                 <Route path="/register/step/confirm" element={<RegisterSecondStepScreen />} />
