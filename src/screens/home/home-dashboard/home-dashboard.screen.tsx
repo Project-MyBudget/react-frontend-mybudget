@@ -36,7 +36,7 @@ function App() {
                     date.setMonth(Number.parseInt(item.month) - 1);
                     newChart.push([
                         date.toLocaleString('default', { month: 'long' }),
-                        item.totalValueExpenses.toString()
+                        item.totalValueExpenses
                     ]);
                 });
                 setChartPreviousDebts(newChart);
