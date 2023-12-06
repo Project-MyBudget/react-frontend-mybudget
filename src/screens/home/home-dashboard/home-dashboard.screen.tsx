@@ -174,9 +174,9 @@ function App() {
                         return (
                             <>
                                 <div className='legend-topic'>
-                                    <span className='legend-topic-ball'
+                                    <div className='legend-topic-ball'
                                         style={data.progress === 'FEITO' ? { backgroundColor: "#009e2f", color: "#009e2f" } : { backgroundColor: "#4472C4", color: "#4472C4" }}
-                                    >......</span>
+                                    >......</div>
                                     {data.description} - {data.progress}
                                 </div>
                             </>
@@ -200,19 +200,19 @@ function App() {
                 <div className='goals-and-legends-box'>
                     <section className='legends-box'>
                         <div className='legend-topic'>
-                            <span className='legend-topic-ball' style={{ backgroundColor: "#ED7D31", color: "#ED7D31" }}>......</span>
+                            <div className='legend-topic-ball' style={{ backgroundColor: "#ED7D31", color: "#ED7D31" }}></div>
                             Despesas essenciais : Aquelas que não podem ser cortadas, pois garantem a sobrevivência. Exemplos: aluguel, energia elétrica, alimentação e água.
                         </div>
                         <div className='legend-topic'>
-                            <span className='legend-topic-ball' style={{ backgroundColor: "#4472C4", color: "#4472C4" }}>......</span>
+                            <div className='legend-topic-ball' style={{ backgroundColor: "#4472C4", color: "#4472C4" }}></div>
                             Despesas não essenciais: Aquelas que são importantes para a sua qualidade de vida e da sua família. Exemplos: plano de saúde, mensalidade escolar, faculdade, academia, etc.
                         </div>
                         <div className='legend-topic'>
-                            <span className='legend-topic-ball' style={{ backgroundColor: "#FFBB71", color: "#FFBB71" }}>......</span>
+                            <div className='legend-topic-ball' style={{ backgroundColor: "#FFBB71", color: "#FFBB71" }}></div>
                             Para economizar: Pensando em alguma finalidade especifica ou emergencial. Exemplos: investimentos, viagem, aquisição de um carro ou perda do trabalho.
                         </div>
                         <div className='legend-topic'>
-                            <span className='legend-topic-ball' style={{ backgroundColor: "#A5A5A5", color: "#A5A5A5" }}>......</span>
+                            <div className='legend-topic-ball' style={{ backgroundColor: "#A5A5A5", color: "#A5A5A5" }}></div>
                             Cuidado com você: Pensando no seu bem-estar momentâneo. Exemplos: ida ao restaurante, shopping, salão de beleza, jogos, saída com amigos e familiares.
                         </div>
                     </section>

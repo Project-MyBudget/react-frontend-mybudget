@@ -61,6 +61,9 @@
     padding: 0.7px;
     margin-right: 5px;
     border-radius: 70px;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
 }
 
 .legend-topic {
