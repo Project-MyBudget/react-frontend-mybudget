@@ -65,6 +65,7 @@ const App = () => {
             return;
         }
 
+
         Toastify(ToastifyConfig.getPopUp(`Despesas atualizadas com sucesso para o mês: ${new Date().getMonth()}`, "success")).showToast();
         // navigate("/initial/financial-control");
     };

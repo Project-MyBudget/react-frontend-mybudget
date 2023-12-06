@@ -58,6 +58,14 @@ function App() {
         const response = await userService.updateBudgetAndEconomies(request);
         const jsonResponse = await response.json();
 
+        if (response.status === 412) {
+            Toastify(ToastifyConfig.getPopUp(jsonResponse.message, "warning")).showToast();
+            const reloadPage = setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+            return () => clearTimeout(reloadPage);
+        }
+
         if (response.status === 200) {
             Toastify(ToastifyConfig.getPopUp(jsonResponse.message, "success")).showToast();
             const reloadPage = setTimeout(() => {

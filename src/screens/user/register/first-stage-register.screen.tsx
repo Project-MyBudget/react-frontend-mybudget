@@ -49,7 +49,7 @@ function App() {
         if (formValues.password === repeatPassword) {
             navigate('/register/step/confirm', { state: { formValues: formValues } });
         } else {
-            Toastify(ToastifyConfig.getPopUp("As senhas não estão estão condizentes!", "error")).showToast();
+            Toastify(ToastifyConfig.getPopUp("As senhas não estão condizentes!", "error")).showToast();
         }
     };
 
