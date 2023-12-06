@@ -32,7 +32,17 @@ function Budget(props: any) {
                         <div className='sub-title-icon-economies'></div>
                         <div className='sub-title-items'>
                             <span className='sub-title-budget'>Suas economias</span>
-                            <span className='budget-control-financial'>{response.totalValueSaved.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+
+                            {
+                                response.totalValueSaved < 0 ?
+                                    <span className='budget-control-financial' style={{color: 'red'}}>
+                                        {response.totalValueSaved.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                    </span>
+                                    : <span className='budget-control-financial' style={{color: 'green'}}>
+                                        {response.totalValueSaved.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                    </span>
+
+                            }
                         </div>
                     </div>
                     : <></>

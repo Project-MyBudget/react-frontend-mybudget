@@ -1,0 +1,75 @@
+.main-container-alter-user {
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 100vh;
+    text-align: center;
+    justify-content: center;
+}
+
+.card-section-alter {
+    display: flex;
+    flex-direction: row;
+    gap: 50%;
+    flex-wrap: 10;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    background-color: #F6F6F6;
+    color: black;
+    height: 60vh;
+    width: 40vw;
+    align-items: center;
+    border-radius: 15px;
+    padding: 50px;
+    box-shadow: 0px 18px 10px 0px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+}
+
+.personal-data-space>span {
+    font-size: 20px;
+}
+
+.personal-data-title {
+    margin-top: 1%;
+    font-size: 24px;
+    font-weight: 200;
+}
+
+.register-form {
+    height: 50vh;
+    width: 30vw;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto;
+}
+
+.btn-update:hover {
+    filter: drop-shadow(0 0 0.3em black);
+    cursor: pointer;
+}
+
+.btn-update {
+    text-align: center;
+    text-decoration: none;
+    background-color: white;
+    color: #0565D9;
+    padding: 15px;
+    width: 150px;
+    font-size: 16px;
+    border: 1px solid #0565D9;
+    border-radius: 9px;
+}
+
+.btn-update:hover {
+    filter: drop-shadow(0 0 0.3em #646cffaa);
+    cursor: pointer;
+}
+
+.btn-update-area {
+    width: 20%;
+    justify-content: center;
+  
+    margin-top: 10%;
+    margin-left: 20%;
+    margin-right: 30%;
+}

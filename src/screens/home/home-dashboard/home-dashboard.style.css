@@ -58,16 +58,16 @@
 }
 
 .legend-topic-ball {
-    padding: 0.7px;
     margin-right: 5px;
     border-radius: 70px;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     display: inline-block;
 }
 
 .legend-topic {
     margin: 2px;
+    font-size: 18px;
 }
 
 .goals-box {

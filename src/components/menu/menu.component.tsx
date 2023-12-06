@@ -45,7 +45,7 @@ function Menu(props: any) {
                     data-tooltip-place="top">
                     <FontAwesomeIcon size={selectedItem === 'goals' ? '2x' : '3x'} className={selectedItem === 'goals' ? 'selected-item' : 'not-selected-item'} icon={faListCheck} color='#000' />
                 </a>
-                <a href="#" className='menu-icon'
+                <a href="/alter/user" className='menu-icon'
                     data-tooltip-id="icons-desc-tooltip"
                     data-tooltip-content="Veja seus dados pessoais e altere se necessário."
                     data-tooltip-place="top">

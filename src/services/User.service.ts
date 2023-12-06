@@ -1,5 +1,7 @@
 import EconomiesModel from "../models/Economies.model";
+import EmploymentModel from "../models/Employment.model";
 import RegisterRequest from "../models/RegisterRequest.model";
+import UserResponseModel from "../models/UserResponse.model";
 
 class UserService {
 
@@ -45,6 +47,28 @@ class UserService {
                 'Content-type': 'application/json'
             }
         });
+        return response;
+    }
+
+    async getUserById(userId: number): Promise<RegisterRequest> {
+        const response = await fetch(`${this.HOST}/user/id/${userId}`);
+        return await response.json();
+    }
+
+    async getEmploymentByUser(userId: number): Promise<EmploymentModel> {
+        const response = await fetch(`${this.HOST}/user/employment/${userId}`);
+        return await response.json();
+    }
+
+    async updateUser(request: RegisterRequest) {
+        const response = await fetch(`${this.HOST}/user/update`, {
+            method: "PUT",
+            body: JSON.stringify(request),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        });
+
         return response;
     }
 }

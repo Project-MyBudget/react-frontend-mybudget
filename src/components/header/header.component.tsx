@@ -10,7 +10,7 @@ function Header() {
 
     const handleClick = () => {
         localStorage.clear();
-        navigate('/authenticate');
+        navigate('/authenticate');  
     };
 
     return (

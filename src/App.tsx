@@ -8,6 +8,7 @@ import InitialFinancialControl from './screens/financial-control/initial-financi
 import UserFinancial from './screens/financial-control/finances/user-finances.screen.tsx';
 import Economies from './screens/financial-control/economies/user-economies.tsx';
 import UserGoals from './screens/financial-control/goals/user-goals.screen.tsx';
+import AlterUser from './screens/user/alter/alter-user.screen.tsx';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/user/financial-control" element={<UserFinancial />} />
                 <Route path="/user/economy-control" element={<Economies/>} />
                 <Route path="/user/goals-control" element={<UserGoals />} />
+                <Route path="/alter/user" element={<AlterUser />} />
             </Routes>
         </>
     );

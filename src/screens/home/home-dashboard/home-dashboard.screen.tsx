@@ -176,7 +176,7 @@ function App() {
                                 <div className='legend-topic'>
                                     <div className='legend-topic-ball'
                                         style={data.progress === 'FEITO' ? { backgroundColor: "#009e2f", color: "#009e2f" } : { backgroundColor: "#4472C4", color: "#4472C4" }}
-                                    >......</div>
+                                    ></div>
                                     {data.description} - {data.progress}
                                 </div>
                             </>

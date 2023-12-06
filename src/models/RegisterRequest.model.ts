@@ -11,6 +11,7 @@ interface RegisterRequest{
     status: string,
     gender: string,
     civilStatus: string,
+    isUpdatePassword: boolean,
     employment: Employment
 }
 
